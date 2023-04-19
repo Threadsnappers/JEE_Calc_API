@@ -37,7 +37,6 @@ def calculate_score():
     print(len(question))
     for i in range(0,len(question)):
         key[question[i]] = answer[i]
-    print(key)
 
     #Response_Sheet
     soup = BeautifulSoup(response_sheet.read(), "html.parser")
