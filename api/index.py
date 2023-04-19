@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__)
 api = Api(app)
-cors = CORS(app, resources={r'/api/*':{'origins': 'https://jee-main-auto-calc-v2.vercel.app/'}})
+cors = CORS(app, resources={r'/*':{'origins': 'https://jee-main-auto-calc-v2.vercel.app/'}})
 parser = reqparse.RequestParser()
 parser.add_argument('file1', type=werkzeug.datastructures.FileStorage, location='files')
 parser.add_argument('file2', type=werkzeug.datastructures.FileStorage, location='files')
