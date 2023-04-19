@@ -79,10 +79,12 @@ def calculate_score():
     correct = 0
     incorrect = 0
     incorr_q = []
+    corr_q = []
     for elem in values:
         if(elem in bonus):
             continue
         if(key[elem] == values[elem]):
+            corr_q.append(elem)
             correct += 1
         else:
             incorrect += 1
@@ -91,7 +93,8 @@ def calculate_score():
     total = correct*4 - incorrect
     
     result = {'Correct': correct, 'Incorrect': incorrect, 'Total': total,
-              'Incorrect_Questions': incorr_q, 'Bonus': bonus}
+              'Incorrect_Questions': incorr_q, 'Bonus': bonus,
+              'Correct_Questions': corr_q, 'Bonus Questions': bonus}
 
     return jsonify(result)
 
