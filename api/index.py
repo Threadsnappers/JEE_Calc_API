@@ -93,8 +93,7 @@ def calculate_score():
     total = correct*4 - incorrect
     
     result = {'Correct': correct, 'Incorrect': incorrect, 'Total': total,
-              'Incorrect_Questions': incorr_q, 'Bonus': bonus,
-              'Correct_Questions': corr_q}
+              'Incorrect_Questions': incorr_q, 'Bonus': bonus}
 
     return jsonify(result)
 
