@@ -13,19 +13,31 @@ parser = werkzeug.datastructures.FileStorage
 def calculate_score():
     answer_key = request.files['file1']        
     response_sheet = request.files['file2']
-
     #Answer_Key
     soup = BeautifulSoup(answer_key.read(), "html.parser")
     table = soup.find("table", {"id": "ctl00_LoginContent_grAnswerKey"})
-    data = []
-    for row in table.find_all("tr"):
-        cells = row.find_all("td")
-        if len(cells) > 0:
-            data.append([cell.text for cell in cells])
     key = {}
-    for arr in data:
-        key[arr[2].strip('\n')] = arr[3].strip('\n')
-
+    bonus = []
+    counter = 102
+    question_2 = "_lbl_QuestionNo"
+    answer_2 = "_lbl_RAnswer"
+    status_2 = "lblstatus"
+    ids = soup.find_all('span')
+    question = []
+    answer = []
+    for val in ids:
+        if val.get('id') != None:
+            if question_2 in val.get('id'):
+                question.append(val.text)
+            if answer_2 in val.get('id'):
+                answer.append(val.text)
+            if status_2 in val.get('id'):
+                bonus.append(question[-1])
+                del question[-1] 
+    print(len(question))
+    for i in range(0,len(question)):
+        key[question[i]] = answer[i]
+    print(key)
 
     #Response_Sheet
     soup = BeautifulSoup(response_sheet.read(), "html.parser")
@@ -68,15 +80,18 @@ def calculate_score():
     incorrect = 0
     incorr_q = []
     for elem in values:
+        if(elem in bonus):
+            continue
         if(key[elem] == values[elem]):
             correct += 1
         else:
             incorrect += 1
             incorr_q.append(elem)
+    bonus = len(bonus)
     total = correct*4 - incorrect
-
+    
     result = {'Correct': correct, 'Incorrect': incorrect, 'Total': total,
-              'Incorrect_Questions': incorr_q}
+              'Incorrect_Questions': incorr_q, 'Bonus': bonus}
 
     return jsonify(result)
 
