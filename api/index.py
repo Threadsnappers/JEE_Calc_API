@@ -17,7 +17,6 @@ def score_app():
         return jsonify(dets[app_no])
 
 @app.route('/score_link', methods=['POST'])
-@cross_origin()
 def calculate_score():
     app_no = request.form['app_no']
     answer_key = request.form['ans_link']        
