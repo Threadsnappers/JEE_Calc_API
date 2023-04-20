@@ -9,17 +9,10 @@ app.config['CORS_HEADER'] = 'Content-Type'
 parser = werkzeug.datastructures.FileStorage
 dets = {}
 
-@app.route('/score_app', methods=['POST'])
-@cross_origin()
-def score_app():
-    app_no = request.form['app_no']
-    if app_no in dets:
-        return jsonify(dets[app_no])
 
 @app.route('/score_file', methods=['POST'])
 @cross_origin()
 def calculate_score_file():
-    app_no = request.form['app_no']
     answer_key = request.files['file1']        
     response_sheet = request.files['file2']
     #Answer_Key
@@ -110,7 +103,6 @@ def calculate_score_file():
     
     result = {'Correct': correct, 'Incorrect': incorrect, 'Total': total,
               'Incorrect_Questions': incorr_q, 'Bonus': bonus}
-    dets[app_no] = result
     return jsonify(result)
 
 @app.route('/score', methods=['POST'])
