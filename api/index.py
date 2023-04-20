@@ -61,14 +61,14 @@ def calculate_score():
         answers.append(sub)
     counter = 0
     for question in data:
-        if 'MCQ' in question and (('Answered' in question) or ('Marked For Review' in question)):
+        if 'MCQ' in question and ((('Answered' in question) or ('Marked For Review' in question)) and (not ('Not Attempted and Marked For Review' in question))):
             chosen = int(question[15])
             question_id = question[3]
             answer_id = question[3+chosen*2]
             values[question_id] = answer_id
         if 'SA' in question:
             answer = answers[counter]
-            if ('Answered' in question) or ('Marked For Review' in question):
+            if ((('Answered' in question) or ('Marked For Review' in question)) and (not ('Not Attempted and Marked For Review' in question))):
                 question_id = question[3]
                 answer_id = answer[5]
                 values[question_id] = answer_id
