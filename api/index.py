@@ -7,7 +7,6 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADER'] = 'Content-Type'
 parser = werkzeug.datastructures.FileStorage
-dets = {}
 
 
 @app.route('/score_file', methods=['POST'])
