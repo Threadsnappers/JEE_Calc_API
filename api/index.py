@@ -22,8 +22,6 @@ def calculate_score_link():
     app_no = request.form['app_no']
     answer_key = request.form['ans_link']        
     response_sheet = request.form['res_link']
-    if app_no in dets:
-        return jsonify(dets[app_no])
     #Answer_Key
     soup = BeautifulSoup(answer_key, "html.parser")
     table = soup.find("table", {"id": "ctl00_LoginContent_grAnswerKey"})
@@ -114,8 +112,6 @@ def calculate_score_file():
     app_no = request.form['app_no']
     answer_key = request.files['file1']        
     response_sheet = request.files['file2']
-    if app_no in dets:
-        return jsonify(dets[app_no])
     #Answer_Key
     soup = BeautifulSoup(answer_key.read(), "html.parser")
     table = soup.find("table", {"id": "ctl00_LoginContent_grAnswerKey"})
