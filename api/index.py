@@ -91,7 +91,7 @@ def calculate_score_file():
                 incorrect += 1
                 incorr_q.append(elem)
         else:
-            if(float(key[elem] == values[elem])):
+            if(float(key[elem]) == values[elem]):
                 corr_q.append(elem)
                 correct += 1
             else:
