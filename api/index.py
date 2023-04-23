@@ -178,7 +178,7 @@ def calculate_score():
     for elem in values:
         if(elem in bonus):
             continue
-        if(key[elem] == values[elem]):
+        if(float(key[elem]) == float(values[elem])):
             corr_q.append(elem)
             correct += 1
         else:
