@@ -1,3 +1,6 @@
+# DISCLAIMER
+The API is no longer online. Feel free to clone the rpo and run it locally.
+
 # API for JEE Calc v2
 
 Framework: Flask API
