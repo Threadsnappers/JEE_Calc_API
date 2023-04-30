@@ -1,5 +1,5 @@
 # DISCLAIMER
-The API is no longer online. Feel free to clone the rpo and run it locally.
+The API is no longer online. Feel free to clone the repo and run it locally.
 
 # API for JEE Calc v2
 
